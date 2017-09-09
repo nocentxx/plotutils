@@ -22,6 +22,9 @@ pyplot.xticks(x, t.tolist(), rotation=45)
 
 pyplot.ylabel(y_label)
 
+# tune subplot layout
+pyplot.subplots_adjust(left=0.17, bottom=0.2, right=0.9, top=0.9)
+
 pyplot.title(plot_title)
 
 pyplot.grid(True)
