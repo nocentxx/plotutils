@@ -1,0 +1,15 @@
+@startuml
+abstract class NNEngineBuilder {
+    - {field} mModel : File
+    - {field} mOutputLayers : String[]
+    - {field} mRuntime: NNRuntime
+    - {field} mPerfProfile : NNPerformanceProfile
+    - {field} mNNEngineBuilder : NNEngineBuilder
+    - {method} NNEngineBuilder() :
+    + {method} setRuntime(\n	final NNRuntime runtime) : NNEngineBuilder
+    + {method} setOutputLayers(\n	final String[] outputLayers) : NNEngineBuilder
+    + {method} setPerformanceProfile(\n	final PerformanceProfile profile) : NNEngineBuilder
+    + {method} abstract getInstance(final File model) : NNEngineBuilder
+    + {method} abstract build(Application app) : NNEngine
+}
+@enduml

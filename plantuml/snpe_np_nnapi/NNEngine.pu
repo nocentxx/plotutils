@@ -1,0 +1,16 @@
+@startuml
+abstract class NNEngine {
+    # {field} EngineVersion : String
+    # {field} mNNModel : NNModel
+    + {method} NNEngine(File model) :
+    + {method} getVersion() : String
+    + {method} getNNModel() : NNModel
+    + {method} createSingleInputTensor : NNTensor
+    + {method} executeNetwork(Map<String, NNTensor>input,\n	Map<String, NNTensor> output) : int
+    + {method} getDataType() : NNDataType
+    + {method} getInputTensorsNames() : set<String>
+    + {method} getOutputTensorsNames() : set<String>
+    + {method} getInputTensorsShapes() : Map<String, int[]>
+    + {method} getOutputTensorsShapes() : Map<String, int[]>
+}
+@enduml

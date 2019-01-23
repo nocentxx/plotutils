@@ -1,0 +1,146 @@
+/***********************
+ *  CUSTOM TEMPLATES   *
+ ***********************/
+
+var opensourcemasterCol = 0;
+var oppobaseCol = 1;
+var feature1Col = 2;
+var feature2Col = 3;
+
+var graphConfig = new GitGraph.Template({
+  colors: [ "#9993FF", "#47E8D4", "#6BDB52", "#F85BB5", "#FFA657", "#F85BB5" ],
+  branch: {
+    color: "#000000",
+    lineWidth: 3,
+    spacingX: 60,
+    mergeStyle: "straight",
+    showLabel: true, // display branch names on graph
+    labelFont: "normal 12pt Arial",
+    labelRotation: 0
+  },
+  commit: {
+    spacingY: -40,
+    dot: {
+      size: 8,
+      strokeColor: "#000000",
+      strokeWidth: 4,
+    },
+    tag: {
+      font: "normal 12pt Arial",
+      color: "yellow"
+    },
+    message: {
+      color: "black",
+      font: "normal 12pt Arial",
+      displayAuthor: false,
+      displayBranch: true,
+      displayHash: true,
+    }
+  },
+  arrow: {
+    size: 8,
+    offset: 2
+  }
+});
+
+var config = {
+  template: graphConfig,
+  reverseArrow: false, // to make arrows point to ancestors, if displayed
+  /*mode: "extended",*/
+  orientation: "vertical"
+};
+
+var gitGraph = new GitGraph(config);
+
+/************************
+ * BRANCHES AND COMMITS *
+ ************************/
+
+var opensourcemaster = gitGraph.branch({
+    name: "opensourcemaster",
+    column: opensourcemasterCol
+});
+
+// Commit on HEAD Branch which is "opensourcemaster"
+opensourcemaster.commit("OpenSource commit 1");
+
+// Add few commits on opensourcemaster
+opensourcemaster.commit("OpenSource commit 2");
+
+// Create a new "oppobase" branch from "opensourcemaster" with some custom configuration
+var oppobase = opensourcemaster.branch({
+  parentBranch: opensourcemaster,
+  name: "oppobase",
+  column: oppobaseCol,
+  color: "#F00",
+  // lineDash: [5],
+  commitDefaultOptions: {
+    color: "#F00"
+  }
+});
+oppobase.commit("algo commit 1");
+
+
+oppobase.commit("algo commit 2");
+
+// Commit again on "opensourcemaster"
+opensourcemaster.commit("I'm the opensourcemaster !");
+
+var algofeature1 = oppobase.branch({
+  parentBranch: oppobase,
+  name: "algofeature1",
+  column: feature1Col,
+  color: "#deb887",
+  // lineDash: [5],
+  commitDefaultOptions: {
+    color: "#deb887"
+  }
+});
+
+algofeature1.commit("algofeature1 commit 1")
+algofeature1.commit("algofeature1 commit 2")
+
+oppobase.commit("algo commit 3");
+
+// algofeature2 branch
+var algofeature2 = oppobase.branch({
+  parentBranch: oppobase,
+  name: "algofeature2",
+  column: feature2Col,
+  color: "#5f9ea0",
+  // lineDash: [5],
+  commitDefaultOptions: {
+    color: "#5f9ea0"
+  }
+});
+
+algofeature1.merge(oppobase, {
+    message: "release",
+    tag: "v1.0"
+});
+
+algofeature2.commit("algofeature2 commit 1")
+
+opensourcemaster.commit("update again!");
+opensourcemaster.merge(oppobase, {
+    message: "merge from opensource project to oppobase branch"
+});
+
+algofeature2.commit("algofeature2 commit 2")
+
+algofeature2.commit("algofeature2 commit 3")
+algofeature2.merge(oppobase, {
+    message: "release",
+    tag: "v2.0"
+});
+
+oppobase.commit({
+    lineDash: [3, 2],
+    dotStrokeWidth: 5,
+    dotColor: "white",
+    messageHashDisplay: false,
+    messageAuthorDisplay: false,
+    message: "Current",
+    tag: "HEAD",
+    displayTagBox: true
+});

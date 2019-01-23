@@ -1,0 +1,8 @@
+@startuml
+abstract class NNTensor {
+    - {field} mBufferType : NNBufferType
+    + {method} write(byte[] value, int size) : void
+    + {method} read(byte[] value, int size) : int
+    + {method} getBufferType : NNBufferType
+}
+@enduml

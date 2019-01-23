@@ -1,0 +1,9 @@
+@startuml
+enum NNRuntime {
+    + CPU : 0
+    + GPU_FLOATM32_FLOATD16
+    + GPU_FLOATM16_FLOATD16
+    + DSP_FIXED8_TF
+    + NPU
+}
+@enduml

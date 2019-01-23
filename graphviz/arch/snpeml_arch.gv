@@ -1,0 +1,60 @@
+digraph G {
+	bgcolor="purple:pink"
+	label="Architecture"
+	labeljust="l"
+	labelloc="t"
+	fontcolor="white"
+	fontname = "arphic-gkai00mp"
+
+	subgraph cluster1 {
+		label=""
+		node [
+			shape=box
+			fillcolor="red:yellow"
+			style="filled"
+			gradientangle=90
+		] SnpeMachineBuilder;
+
+
+		node [
+			shape=box
+			fillcolor="red:yellow"
+			style="filled"
+			gradientangle=90
+		] SnpeMachine;
+
+		node [
+			shape=box
+			fillcolor="red:yellow"
+			style="filled"
+			gradientangle=90
+		] TensorStream;
+	}
+
+	subgraph cluster2 {
+		label=""
+		node [
+			shape=box
+			fillcolor="darkolivegreen3:darkgreen"
+			style="filled"
+			gradientangle=90
+		] SNPEBuilder;
+
+
+		node [
+			shape=box
+			fillcolor="darkolivegreen3:darkgreen"
+			style="filled"
+			gradientangle=90
+		] SNPE;
+
+		node [
+			shape=box
+			fillcolor="darkolivegreen3:darkgreen"
+			style="filled"
+			gradientangle=90
+		] TensorMap;
+	}
+
+	SnpeMachine -> SNPE
+}

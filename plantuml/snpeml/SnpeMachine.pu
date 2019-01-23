@@ -1,0 +1,30 @@
+@startuml
+class LogOptions {
+    + {method} LogOptions()
+    + {field} logFileDirectory : std::string
+    + {field} logFileName : std::string
+    + {field} logFileRotateCount : uint32_t
+}
+
+class SnpeMachine {
+    -- method --
+    + {method} SnpeMachine()
+    + {method} startLog(LogOptions logOption) : bool
+    + {method} getMlVersion() : std::string
+    + {method} executeNetwork(std::vector<float> &data,\n\tstd::map<uint64_t, std::vector<float>> &out) : int
+    + {method} executeNetwork(unsigned char* data, size_t size,\n\tstd::map<uint64_t, std::vector<float>> &out) : int
+    + {method} executeNetwork(bool list, std::string inputFile,\n\tstd::map<uint64_t, std::vector<float>> &out) : int
+    - {method} ready() :int
+    -- member --
+    - {field} mDebugMode : bool
+    - {field} mUseUserBuffer : bool
+    - {field} mOutputLayers : zdl::DlSystem::StringList
+    - {field} mRuntime : zdl::DlSystem::Runtime_t
+    - {field} mPerformProfile : zdl::DlSystem::PerformanceProfile_t
+    - {field} mContainer : std::unique_ptr<zdl::DlContainer::IDlContainer>
+    - {field} mSnpe : std::unique_ptr<zdl::SNPE::SNPE>
+    - {field} mTensorStream : std::unique_ptr<TensorStream>
+    -- friend --
+    friend class SnpeMachineBuilder
+}
+@enduml

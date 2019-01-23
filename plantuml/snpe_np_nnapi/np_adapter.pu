@@ -1,0 +1,20 @@
+@startuml
+class NNTensor
+class NNEngine
+class NNModel
+class NNEngineBuilder
+
+class NPTensor
+class NPEngine
+class NPModel
+class NPEngineBuilder
+
+NNTensor <|-- NPTensor
+NNEngine <|-- NPEngine
+NNModel <|-- NPModel
+NNEngineBuilder <|-- NPEngineBuilder
+
+NPEngineBuilder "1..*" ..> "1" NPEngine
+NPEngine "1" --> "1" NPModel
+NPEngine "1..*" ..> "1..*" NPTensor
+@enduml

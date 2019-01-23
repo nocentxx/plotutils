@@ -1,0 +1,13 @@
+@startuml
+class NativeInterpreterWrapper {
+    + {method} NativeInterpreterWrapper(String modelPath)
+    + {method} NativeInterpreterWrapper(String modelPath, int numThreads)
+    + {method} NativeInterpreterWrapper(ByteBuffer byteBuffer)
+    + {method} NativeInterpreterWrapper(ByteBuffer byteBuffer, int numThreads)
+}
+
+class TfLiteTensor {
+{field} bytes : size_t
+{field} type : TfLiteType
+}
+@enduml

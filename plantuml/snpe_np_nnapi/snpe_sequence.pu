@@ -1,0 +1,49 @@
+@startuml
+hide footbox
+
+actor user
+user -> SNPEEngineBuilder : createSNPEEngineBuilder
+SNPEEngineBuilder --> user
+
+user -> SNPEEngineBuilder
+activate SNPEEngineBuilder
+
+create SNPEEngine
+SNPEEngineBuilder -> SNPEEngine : createSNPEEngine
+deactivate SNPEEngineBuilder
+
+SNPEEngine --> user
+
+user -> SNPEEngine : getNNModel
+activate SNPEEngine
+
+SNPEEngine --> user : return NNModel
+deactivate SNPEEngine
+
+user -> SNPEEngine : createInputTensor
+activate SNPEEngine
+
+create SNPETensor
+SNPEEngine -> SNPETensor
+deactivate SNPEEngine
+
+SNPETensor --> user
+
+loop
+
+user -> SNPETensor : write input data
+
+user -> SNPEEngine : executeNetwork
+
+activate SNPEEngine
+SNPEEngine --> user : return NN output
+deactivate SNPEEngine
+
+user -> user : handleResult
+activate user
+deactivate user
+
+end
+
+destroy SNPETensor
+@enduml

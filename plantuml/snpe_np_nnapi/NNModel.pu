@@ -1,0 +1,16 @@
+@startuml
+class NNModel {
+    - {field} mEngine : NNEngine
+    - {field} mDataType : NNDataType
+    - {field} mInputTensorsNames : set<String>
+    - {field} mOutputTensorsNames : set<String>
+    - {field} mInputTensorsShapes : Map<String, int[]>
+    - {field} mOutputTensorsShapes : Map<String, int[]>
+    + {method} NNModel(NNEngine engine) :
+    + {method} getDataType() : NNDataType
+    + {method} getInputTensorsNames() : set<String>
+    + {method} getOutputTensorsNames() : set<String>
+    + {method} getInputTensorsShapes() : Map<String, int[]>
+    + {method} getOutputTensorsShapes() : Map<String, int[]>
+}
+@enduml

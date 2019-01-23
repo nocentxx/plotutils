@@ -1,0 +1,124 @@
+/***********************
+ *  CUSTOM TEMPLATES   *
+ ***********************/
+
+var oppodevelopCol = 0;
+var feature1Col = 1;
+var feature2Col = 2;
+
+var graphConfig = new GitGraph.Template({
+  colors: [ "#9993FF", "#47E8D4", "#6BDB52", "#F85BB5", "#FFA657", "#F85BB5" ],
+  branch: {
+    color: "#000000",
+    lineWidth: 3,
+    spacingX: 60,
+    mergeStyle: "straight",
+    showLabel: true, // display branch names on graph
+    labelFont: "normal 12pt Arial",
+    labelRotation: 0
+  },
+  commit: {
+    spacingY: -40,
+    dot: {
+      size: 8,
+      strokeColor: "#000000",
+      strokeWidth: 4,
+    },
+    tag: {
+      font: "normal 12pt Arial",
+      color: "yellow"
+    },
+    message: {
+      color: "black",
+      font: "normal 12pt Arial",
+      displayAuthor: false,
+      displayBranch: true,
+      displayHash: true,
+    }
+  },
+  arrow: {
+    size: 8,
+    offset: 2
+  }
+});
+
+var config = {
+  template: graphConfig,
+  reverseArrow: false, // to make arrows point to ancestors, if displayed
+  /*mode: "extended",*/
+  orientation: "vertical"
+};
+
+var gitGraph = new GitGraph(config);
+
+/************************
+ * BRANCHES AND COMMITS *
+ ************************/
+
+// Create a new "oppodevelop" branch from "master" with some custom configuration
+var oppodevelop = gitGraph.branch({
+  name: "oppodevelop",
+  column: oppodevelopCol,
+  color: "#F00",
+  // lineDash: [5],
+  commitDefaultOptions: {
+    color: "#F00"
+  }
+});
+oppodevelop.commit("algo commit 1");
+
+oppodevelop.commit("algo commit 2");
+
+var algofeature1 = oppodevelop.branch({
+  parentBranch: oppodevelop,
+  name: "algofeature1",
+  column: feature1Col,
+  color: "#deb887",
+  // lineDash: [5],
+  commitDefaultOptions: {
+    color: "#deb887"
+  }
+});
+
+algofeature1.commit("algofeature1 commit 1")
+algofeature1.commit("algofeature1 commit 2")
+
+oppodevelop.commit("algo commit 3");
+
+// algofeature2 branch
+var algofeature2 = oppodevelop.branch({
+  parentBranch: oppodevelop,
+  name: "algofeature2",
+  column: feature2Col,
+  color: "#5f9ea0",
+  // lineDash: [5],
+  commitDefaultOptions: {
+    color: "#5f9ea0"
+  }
+});
+
+algofeature1.merge(oppodevelop, {
+    message: "oppo release",
+    tag: "v1.0"
+});
+
+algofeature2.commit("algofeature2 commit 1")
+
+algofeature2.commit("algofeature2 commit 2")
+
+algofeature2.commit("algofeature2 commit 3")
+algofeature2.merge(oppodevelop, {
+    message: "oppo release",
+    tag: "v2.0"
+});
+
+oppodevelop.commit({
+    lineDash: [3, 2],
+    dotStrokeWidth: 5,
+    dotColor: "white",
+    messageHashDisplay: false,
+    messageAuthorDisplay: false,
+    message: "Current",
+    tag: "HEAD",
+    displayTagBox: true
+});

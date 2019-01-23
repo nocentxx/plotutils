@@ -1,0 +1,7 @@
+@startuml
+enum NNBufferType {
+    + BT_FLOAT : 0
+    + BT_BYTEBUFFER
+    + BT_UNKNOWN
+}
+@enduml

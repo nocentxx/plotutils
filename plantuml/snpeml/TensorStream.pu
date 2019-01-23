@@ -1,0 +1,29 @@
+@startuml
+class TensorStream {
+    + {method} std::unique_ptr<zdl::DlSystem::ITensor>
+         loadITensorFromBuffer(std::unique_ptr<zdl::SNPE::SNPE>& snpe,
+                               \t\tstd::vector<float> &data)
+
+    + {method} std::unique_ptr<zdl::DlSystem::ITensor>
+         loadITensorFromBuffer(std::unique_ptr<zdl::SNPE::SNPE>& snpe,\n\t\tconst unsigned char *data,
+                               \t\tsize_t size)
+
+    + {method} std::unique_ptr<zdl::DlSystem::ITensor>
+         loadITensorFromFile(std::unique_ptr<zdl::SNPE::SNPE>& snpe,
+                             \t\tstd::string& fileName)
+
+    + {method} zdl::DlSystem::TensorMap
+         loadTensorMapFromList(std::unique_ptr<zdl::SNPE::SNPE>& snpe,\n\t\tstd::string& fileList)
+
+    + {method} void saveTensor(const std::string& path,\n\t\tconst zdl::DlSystem::ITensor* tensor)
+
+    + {method} bool ensureDirectory(const std::string& dir)
+
+    - {method} std::unique_ptr<zdl::DlSystem::ITensor>
+    loadInputTensor(std::unique_ptr<zdl::SNPE::SNPE>& snpe,\n\t\tstd::string& fileName,
+                    \t\tconst char* inputTensorName)
+
+    - {method} template <typename T>
+    void loadData(const std::string& fileName, std::vector<T> &dataVec)
+}
+@enduml

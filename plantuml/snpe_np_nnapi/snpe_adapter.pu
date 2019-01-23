@@ -1,0 +1,16 @@
+@startuml
+class NNTensor
+class NNEngine
+class NNModel
+class NNEngineBuilder
+
+class SNPEEngine
+class SNPEEngineBuilder
+class SNPEModel
+class SNPETensor
+
+NNTensor <|-- SNPETensor
+NNEngine <|-- SNPEEngine
+NNModel <|-- SNPEModel
+NNEngineBuilder <|-- SNPEEngineBuilder
+@enduml

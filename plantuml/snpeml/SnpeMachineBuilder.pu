@@ -1,0 +1,21 @@
+@startuml
+enum BufferType {
+    BUF_ITENSOR : 0
+    BUF_USER
+}
+
+class SnpeMachineBuilder {
+    + {method} isRuntimeAvailable(zdl::DlSystem::Runtime_t runtime) : bool
+    + {method} setupRuntime(zdl::DlSystem::Runtime_t runtime) : SnpeMachineBuilder*
+    + {method} setupPerformProfile(zdl::DlSystem::PerformanceProfile_t profile) : SnpeMachineBuilder*
+    + {method} setupBufferType(BufferType bufType) : SnpeMachineBuilder*
+    + {method} setupContainer(std::string containerPath) : SnpeMachineBuilder*
+    + {method} setStorageLocation(const char* storagePath) : SnpeMachineBuilder*
+    + {method} setDebugMode(bool debug) : SnpeMachineBuilder*
+    + {method} appendOutLayer(const char* layer) : SnpeMachineBuilder*
+    + {method} build() : SnpeMachine*
+    + {method} SnpeMachineBuilder()
+
+    - {field} mSnpeMl : SnpeMachine*
+}
+@enduml

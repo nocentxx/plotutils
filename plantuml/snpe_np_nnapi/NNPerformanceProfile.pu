@@ -1,0 +1,7 @@
+@startuml
+enum NNPerformanceProfile {
+    + BALANCED : 0
+    + HIGH_PERFORMANCE
+    + POWER_SAVER
+}
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+
+start
+
+:create NNEngine;
+:create input NNTensor;
+
+repeat
+:prepare input data;
+:executeNetwork;
+:handle result;
+repeat while (loop?)
+
+end
+@enduml

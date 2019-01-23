@@ -1,0 +1,8 @@
+@startuml
+enum NNDataType {
+    + DT_FLOAT32 : 0
+    + DT_UINT8
+    + DT_INT32
+    + DT_INT64
+}
+@enduml

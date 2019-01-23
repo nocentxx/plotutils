@@ -1,0 +1,7 @@
+@startuml
+class NNError {
+    + {field}{static} errno : int
+    - {field} errnoStrMap : Map<errno, String>
+    + {method} getErrorString(int err) : String
+}
+@enduml
